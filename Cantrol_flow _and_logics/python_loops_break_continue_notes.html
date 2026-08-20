@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Loops - Complete Notes from Beginner to Advanced</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Kalam', 'Patrick Hand', 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 50%, #fce4ec 100%);
+    color: #2c3e50;
+    line-height: 1.9;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.notebook {
+    max-width: 980px;
+    margin: 0 auto;
+    background: #fffef7;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 40px;
+    position: relative;
+    background-image: linear-gradient(#e8e8e8 1px, transparent 1px);
+    background-size: 100% 32px;
+}
+
+h1 {
+    font-size: 2.6em;
+    color: #c0392b;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    border-bottom: 3px dashed #e74c3c;
+    padding-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.9em;
+    color: #2980b9;
+    margin-top: 45px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    border-left: 5px solid #3498db;
+    background: linear-gradient(90deg, #ebf5fb, transparent);
+}
+
+h3 {
+    font-size: 1.4em;
+    color: #8e44ad;
+    margin-top: 28px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 1.15em;
+    color: #d35400;
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+    border: 2px dashed #f39c12;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    position: relative;
+}
+.highlight-box::before {
+    content: "💡";
+    font-size: 1.5em;
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: #fff3cd;
+    padding: 0 10px;
+    border-radius: 50%;
+}
+
+.formula-box {
+    background: linear-gradient(135deg, #d5f5e3, #abebc6);
+    border: 2px solid #27ae60;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+.warning-box {
+    background: linear-gradient(135deg, #fadbd8, #f5b7b1);
+    border: 2px solid #e74c3c;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+.warning-box::before {
+    content: "⚠️";
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.info-box {
+    background: linear-gradient(135deg, #d6eaf8, #aed6f1);
+    border: 2px solid #3498db;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+.info-box::before {
+    content: "ℹ️";
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+.pro-box {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    border: 2px solid #8e44ad;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+.pro-box::before {
+    content: "🚀";
+    font-size: 1.5em;
+    margin-right: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+th {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 15px;
+    font-size: 1.1em;
+    text-align: center;
+}
+td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ecf0f1;
+}
+tr:nth-child(even) { background: #f8f9fa; }
+tr:hover { background: #e8f4f8; transform: scale(1.01); transition: all 0.2s; }
+
+.gate-section {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    border: 2px solid #ecf0f1;
+}
+
+.gate-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.gate-icon {
+    font-size: 2em;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+.gate-title {
+    font-size: 1.6em;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.example-box {
+    background: linear-gradient(135deg, #e8daef, #d7bde2);
+    border-left: 5px solid #8e44ad;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 0 12px 12px 0;
+}
+.example-box h4 {
+    color: #6c3483;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.beginner-box {
+    background: linear-gradient(135deg, #d5f4e6, #a9dfbf);
+    border-left: 5px solid #27ae60;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 0 12px 12px 0;
+}
+.beginner-box h4 {
+    color: #1e8449;
+    margin-bottom: 8px;
+}
+
+.intermediate-box {
+    background: linear-gradient(135deg, #fef9e7, #fdebd0);
+    border-left: 5px solid #f39c12;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 0 12px 12px 0;
+}
+.intermediate-box h4 {
+    color: #b9770e;
+    margin-bottom: 8px;
+}
+
+.advanced-box {
+    background: linear-gradient(135deg, #fadbd8, #f5b7b1);
+    border-left: 5px solid #e74c3c;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 0 12px 12px 0;
+}
+.advanced-box h4 {
+    color: #922b21;
+    margin-bottom: 8px;
+}
+
+.problem-box {
+    background: linear-gradient(135deg, #d6eaf8, #aed6f1);
+    border: 2px solid #3498db;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+}
+.problem-box h4 {
+    color: #2874a6;
+    margin-bottom: 10px;
+}
+
+.solution {
+    background: #e8f8f5;
+    border: 1px solid #1abc9c;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+    display: none;
+}
+.solution.show { display: block; }
+
+.toggle-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+.toggle-btn:hover {
+    background: #2980b9;
+    transform: scale(1.05);
+}
+
+.sticky-note {
+    background: #fffacd;
+    border: 1px solid #f0e68c;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+    padding: 15px;
+    margin: 15px 0;
+    transform: rotate(-1deg);
+    border-radius: 2px;
+}
+
+code {
+    background: #f4f4f4;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #c0392b;
+    font-size: 0.95em;
+}
+
+.code-block {
+    background: #2d2d2d;
+    color: #f8f8f2;
+    padding: 20px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 15px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95em;
+    line-height: 1.6;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.code-block .comment { color: #75715e; font-style: italic; }
+.code-block .keyword { color: #66d9ef; font-weight: bold; }
+.code-block .string { color: #a6e22e; }
+.code-block .number { color: #ae81ff; }
+.code-block .function { color: #a6e22e; }
+.code-block .operator { color: #f92672; }
+
+.real-life {
+    background: linear-gradient(135deg, #d5f4e6, #a9dfbf);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid #27ae60;
+}
+.real-life h4 {
+    color: #1e8449;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+.real-life-icon {
+    font-size: 2em;
+    float: left;
+    margin-right: 15px;
+}
+
+.flowchart {
+    text-align: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.output-box {
+    background: #1e1e1e;
+    color: #00ff00;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    margin: 10px 0;
+    border-left: 4px solid #00ff00;
+}
+
+.comparison-table th { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px dashed #bdc3c7;
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+.step-box {
+    background: linear-gradient(135deg, #fef9e7, #fdebd0);
+    border: 2px solid #f39c12;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 0;
+    position: relative;
+    padding-left: 50px;
+}
+.step-number {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #f39c12;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.level-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 15px;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: white;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.tag-beginner { background: linear-gradient(135deg, #27ae60, #1e8449); }
+.tag-intermediate { background: linear-gradient(135deg, #f39c12, #d35400); }
+.tag-advanced { background: linear-gradient(135deg, #e74c3c, #922b21); }
+
+.visual-loop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+.loop-item {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.loop-arrow {
+    font-size: 2em;
+    color: #e74c3c;
+}
+
+@media print {
+    body { background: white; }
+    .notebook { box-shadow: none; }
+}
+</style>
+</head>
+<body>
+<div class="notebook">
+
+<h1>🔄 Python Loops - Complete Guide</h1>
+<p style="text-align:center; color:#7f8c8d; font-size:1.1em;">From Beginner to Advanced with Real-Life Examples</p>
+
+<!-- INTRO -->
+<div class="highlight-box">
+<strong>What are Loops?</strong><br><br>
+Loops let you <strong>repeat code</strong> without writing it again and again. Imagine telling a robot "walk 10 steps" — you do not say "step, step, step..." 10 times. You say "repeat stepping 10 times." That is a loop!
+</div>
+
+<div class="sticky-note">
+<strong>🧠 Think of it like this:</strong> Brushing your teeth — you do not brush just ONE tooth. You repeat the motion for ALL teeth. That is looping in real life!
+</div>
+
+<!-- SECTION 1: for loops -->
+<h2>📌 1. for Loops & Iteration</h2>
+
+<h3>What is a for loop?</h3>
+<p>A <code>for</code> loop goes through a <strong>sequence</strong> (like a list, string, or range) and does something for <strong>each item</strong> one by one.</p>
+
+<div class="formula-box">
+Syntax: <code>for item in sequence:</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;# do something with item</code>
+</div>
+
+<div class="visual-loop">
+<div class="loop-item">Item 1</div>
+<div class="loop-arrow">→</div>
+<div class="loop-item">Item 2</div>
+<div class="loop-arrow">→</div>
+<div class="loop-item">Item 3</div>
+<div class="loop-arrow">→</div>
+<div class="loop-item">...</div>
+<div class="loop-arrow">→</div>
+<div class="loop-item">Done!</div>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example 1: Print Numbers 1 to 5</h4>
+<div class="code-block">
+<span class="comment"># range(1, 6) gives: 1, 2, 3, 4, 5</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    <span class="function">print</span>(i)
+</div>
+<div class="output-box">
+Output:<br>
+1<br>2<br>3<br>4<br>5
+</div>
+<p style="margin-top:10px; color:#555;"><strong>💡 How it works:</strong> <code>range(1, 6)</code> creates numbers from 1 up to (but NOT including) 6. The variable <code>i</code> becomes each number one at a time.</p>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example 2: Loop Through a List</h4>
+<div class="code-block">
+<span class="keyword">fruits</span> = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Cherry"</span>]
+
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(<span class="string">f"I love {fruit}! 🍎"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+I love Apple! 🍎<br>
+I love Banana! 🍎<br>
+I love Cherry! 🍎
+</div>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example 3: Loop Through a String</h4>
+<div class="code-block">
+<span class="keyword">name</span> = <span class="string">"Python"</span>
+
+<span class="keyword">for</span> letter <span class="keyword">in</span> name:
+    <span class="function">print</span>(letter)
+</div>
+<div class="output-box">
+Output:<br>
+P<br>y<br>t<br>h<br>o<br>n
+</div>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example 1: Sum of Numbers</h4>
+<div class="code-block">
+<span class="keyword">numbers</span> = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>]
+<span class="keyword">total</span> = <span class="number">0</span>
+
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    total = total + num   <span class="comment"># or: total += num</span>
+
+<span class="function">print</span>(<span class="string">f"Total sum = {total}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Total sum = 150
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🧮 Step by step:</strong> total starts at 0 → 0+10=10 → 10+20=30 → 30+30=60 → 60+40=100 → 100+50=150</p>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example 2: enumerate() - Get Index + Value</h4>
+<div class="code-block">
+<span class="keyword">colors</span> = [<span class="string">"Red"</span>, <span class="string">"Green"</span>, <span class="string">"Blue"</span>]
+
+<span class="keyword">for</span> index, color <span class="keyword">in</span> <span class="function">enumerate</span>(colors):
+    <span class="function">print</span>(<span class="string">f"{index}: {color}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+0: Red<br>
+1: Green<br>
+2: Blue
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🔑 enumerate()</strong> gives you BOTH the position (index) and the value. Super useful!</p>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example 3: zip() - Loop Two Lists Together</h4>
+<div class="code-block">
+<span class="keyword">names</span> = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>]
+<span class="keyword">scores</span> = [<span class="number">85</span>, <span class="number">92</span>, <span class="number">78</span>]
+
+<span class="keyword">for</span> name, score <span class="keyword">in</span> <span class="function">zip</span>(names, scores):
+    <span class="function">print</span>(<span class="string">f"{name} scored {score}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Alice scored 85<br>
+Bob scored 92<br>
+Charlie scored 78
+</div>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example 1: List Comprehension (Loop in One Line!)</h4>
+<div class="code-block">
+<span class="comment"># Traditional way (3 lines)</span>
+<span class="keyword">squares</span> = []
+<span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    squares.<span class="function">append</span>(x ** <span class="number">2</span>)
+
+<span class="comment"># List Comprehension way (1 line!)</span>
+<span class="keyword">squares</span> = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>)]
+
+<span class="function">print</span>(squares)
+</div>
+<div class="output-box">
+Output:<br>
+[1, 4, 9, 16, 25]
+</div>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example 2: Dictionary Comprehension</h4>
+<div class="code-block">
+<span class="keyword">words</span> = [<span class="string">"cat"</span>, <span class="string">"elephant"</span>, <span class="string">"dog"</span>]
+
+<span class="comment"># Create dict: word -> length</span>
+<span class="keyword">lengths</span> = {word: <span class="function">len</span>(word) <span class="keyword">for</span> word <span class="keyword">in</span> words}
+
+<span class="function">print</span>(lengths)
+</div>
+<div class="output-box">
+Output:<br>
+{'cat': 3, 'elephant': 8, 'dog': 3}
+</div>
+</div>
+
+<div class="real-life">
+<h4>🌍 Real Life Analogy</h4>
+<p><span class="real-life-icon">🎒</span><strong>Packing a School Bag:</strong> You have a list of books. You pick up Book 1, put it in bag. Pick up Book 2, put it in bag. Repeat until all books are packed. That is a <code>for</code> loop — you know exactly how many items there are, and you process each one!</p>
+</div>
+
+<div class="flowchart">
+<svg width="420" height="350" viewBox="0 0 420 350">
+<rect x="130" y="10" width="160" height="40" rx="20" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+<text x="210" y="35" text-anchor="middle" fill="white" font-family="Kalam" font-size="16">Start</text>
+
+<line x1="210" y1="50" x2="210" y2="80" stroke="#2c3e50" stroke-width="2"/>
+
+<rect x="100" y="80" width="220" height="40" rx="5" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+<text x="210" y="105" text-anchor="middle" fill="white" font-family="Kalam" font-size="13">Get next item from sequence</text>
+
+<line x1="210" y1="120" x2="210" y2="150" stroke="#2c3e50" stroke-width="2"/>
+
+<polygon points="210,150 260,185 210,220 160,185" fill="#f39c12" stroke="#e67e22" stroke-width="2"/>
+<text x="210" y="182" text-anchor="middle" fill="white" font-family="Kalam" font-size="13">More items?</text>
+
+<line x1="210" y1="220" x2="210" y2="250" stroke="#2c3e50" stroke-width="2"/>
+<text x="225" y="238" fill="#27ae60" font-family="Kalam" font-size="12">Yes</text>
+
+<rect x="120" y="250" width="180" height="40" rx="5" fill="#27ae60" stroke="#1e8449" stroke-width="2"/>
+<text x="210" y="275" text-anchor="middle" fill="white" font-family="Kalam" font-size="13">Process the item</text>
+
+<path d="M 210 290 L 210 310 L 80 310 L 80 100 L 100 100" fill="none" stroke="#2c3e50" stroke-width="2"/>
+<text x="130" y="305" fill="#3498db" font-family="Kalam" font-size="11">Back to get next</text>
+
+<line x1="260" y1="185" x2="350" y2="185" stroke="#2c3e50" stroke-width="2"/>
+<text x="300" y="178" fill="#e74c3c" font-family="Kalam" font-size="12">No</text>
+
+<line x1="350" y1="185" x2="350" y2="310" stroke="#2c3e50" stroke-width="2"/>
+
+<rect x="270" y="310" width="160" height="40" rx="20" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+<text x="350" y="335" text-anchor="middle" fill="white" font-family="Kalam" font-size="16">End</text>
+</svg>
+<p style="color:#7f8c8d; font-size:0.9em;">Flowchart: for loop</p>
+</div>
+
+<!-- SECTION 2: while loops -->
+<h2>📌 2. while Loops</h2>
+
+<h3>What is a while loop?</h3>
+<p>A <code>while</code> loop keeps running <strong>as long as a condition is true</strong>. You do not need to know how many times — it just keeps going until something changes!</p>
+
+<div class="formula-box">
+Syntax: <code>while condition:</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;# do something</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;# IMPORTANT: change something so condition can become false!</code>
+</div>
+
+<div class="warning-box">
+<strong>Infinite Loop Danger!</strong> If you forget to update the variable inside a while loop, it will run FOREVER and crash your program. Always make sure the condition can eventually become False!
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example 1: Count from 1 to 5</h4>
+<div class="code-block">
+<span class="keyword">count</span> = <span class="number">1</span>
+
+<span class="keyword">while</span> count <= <span class="number">5</span>:
+    <span class="function">print</span>(count)
+    count = count + <span class="number">1</span>   <span class="comment"># Do not forget this!</span>
+
+<span class="function">print</span>(<span class="string">"Done! 🎉"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+1<br>2<br>3<br>4<br>5<br>
+Done! 🎉
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🔍 Watch carefully:</strong> count starts at 1. Each loop, we add 1. When count becomes 6, the condition <code>6 <= 5</code> is False, so the loop stops.</p>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example 2: User Input Validation</h4>
+<div class="code-block">
+<span class="keyword">password</span> = <span class="string">"python123"</span>
+<span class="keyword">guess</span> = <span class="string">""</span>
+
+<span class="keyword">while</span> guess != password:
+    guess = <span class="function">input</span>(<span class="string">"Enter password: "</span>)
+    <span class="keyword">if</span> guess != password:
+        <span class="function">print</span>(<span class="string">"Wrong! Try again. ❌"</span>)
+
+<span class="function">print</span>(<span class="string">"Access granted! ✅"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Enter password: hello<br>
+Wrong! Try again. ❌<br>
+Enter password: python123<br>
+Access granted! ✅
+</div>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example 1: Guessing Game with Limited Tries</h4>
+<div class="code-block">
+<span class="keyword">secret</span> = <span class="number">42</span>
+<span class="keyword">guess</span> = <span class="number">0</span>
+<span class="keyword">attempts</span> = <span class="number">0</span>
+<span class="keyword">max_attempts</span> = <span class="number">5</span>
+
+<span class="keyword">while</span> guess != secret <span class="keyword">and</span> attempts < max_attempts:
+    guess = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Guess the number (1-100): "</span>))
+    attempts += <span class="number">1</span>
+
+    <span class="keyword">if</span> guess < secret:
+        <span class="function">print</span>(<span class="string">"Too low! 📉"</span>)
+    <span class="keyword">elif</span> guess > secret:
+        <span class="function">print</span>(<span class="string">"Too high! 📈"</span>)
+
+<span class="keyword">if</span> guess == secret:
+    <span class="function">print</span>(<span class="string">f"🎉 Correct! You got it in {attempts} tries!"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">f"😢 Out of tries! The number was {secret}."</span>)
+</div>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example 2: Factorial Using while</h4>
+<div class="code-block">
+<span class="keyword">n</span> = <span class="number">5</span>
+<span class="keyword">factorial</span> = <span class="number">1</span>
+<span class="keyword">i</span> = <span class="number">1</span>
+
+<span class="keyword">while</span> i <= n:
+    factorial *= i   <span class="comment"># same as: factorial = factorial * i</span>
+    i += <span class="number">1</span>
+
+<span class="function">print</span>(<span class="string">f"{n}! = {factorial}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+5! = 120
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🧮 Step by step:</strong> 1×1=1 → 1×2=2 → 2×3=6 → 6×4=24 → 24×5=120</p>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example: Fibonacci Sequence</h4>
+<div class="code-block">
+<span class="comment"># Generate first 10 Fibonacci numbers</span>
+<span class="comment"># 0, 1, 1, 2, 3, 5, 8, 13, 21, 34...</span>
+<span class="keyword">a</span>, <span class="keyword">b</span> = <span class="number">0</span>, <span class="number">1</span>
+<span class="keyword">count</span> = <span class="number">0</span>
+<span class="keyword">n</span> = <span class="number">10</span>
+
+<span class="keyword">while</span> count < n:
+    <span class="function">print</span>(a, end=<span class="string">" "</span>)
+    <span class="keyword">temp</span> = a + b
+    a = b
+    b = temp
+    count += <span class="number">1</span>
+</div>
+<div class="output-box">
+Output:<br>
+0 1 1 2 3 5 8 13 21 34
+</div>
+</div>
+
+<div class="real-life">
+<h4>🌍 Real Life Analogy</h4>
+<p><span class="real-life-icon">🚿</span><strong>Washing Dishes:</strong> "While there are dirty dishes in the sink, keep washing." You do not know exactly how many dishes there are — you just keep going until the sink is empty. That is a <code>while</code> loop!</p>
+</div>
+
+<table>
+<tr><th>for loop</th><th>while loop</th></tr>
+<tr><td>You KNOW how many times</td><td>You DO NOT know how many times</td></tr>
+<tr><td>Best for: lists, strings, ranges</td><td>Best for: user input, waiting for events</td></tr>
+<tr><td>Automatically stops at end</td><td>You must update the condition</td></tr>
+<tr><td><code>for i in range(5):</code></td><td><code>while i < 5:</code></td></tr>
+</table>
+
+<!-- SECTION 3: break -->
+<h2>📌 3. break Statement</h2>
+
+<h3>What does break do?</h3>
+<p><code>break</code> is like an <strong>emergency exit</strong> — it immediately stops the loop and jumps out, no matter what!</p>
+
+<div class="formula-box">
+💥 <code>break</code> = "STOP EVERYTHING AND GET OUT OF THE LOOP RIGHT NOW!"
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example: Find First Even Number</h4>
+<div class="code-block">
+<span class="keyword">numbers</span> = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]
+
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"First even number: {num}"</span>)
+        <span class="keyword">break</span>   <span class="comment"># Stop! We found it, no need to check rest</span>
+</div>
+<div class="output-box">
+Output:<br>
+First even number: 8
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🎯 Why break?</strong> Without break, the loop would keep checking 9 and 10 even though we already found our answer. break saves time!</p>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example: Search in a List</h4>
+<div class="code-block">
+<span class="keyword">students</span> = [<span class="string">"Alice"</span>, <span class="string">"Bob"</span>, <span class="string">"Charlie"</span>, <span class="string">"David"</span>]
+<span class="keyword">target</span> = <span class="string">"Charlie"</span>
+<span class="keyword">found</span> = <span class="keyword">False</span>
+
+<span class="keyword">for</span> i, student <span class="keyword">in</span> <span class="function">enumerate</span>(students):
+    <span class="keyword">if</span> student == target:
+        <span class="function">print</span>(<span class="string">f"Found {target} at position {i}! 🎯"</span>)
+        found = <span class="keyword">True</span>
+        <span class="keyword">break</span>
+
+<span class="keyword">if</span> <span class="keyword">not</span> found:
+    <span class="function">print</span>(<span class="string">f"{target} not found. 😢"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Found Charlie at position 2! 🎯
+</div>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example: Prime Number Check</h4>
+<div class="code-block">
+<span class="keyword">num</span> = <span class="number">29</span>
+<span class="keyword">is_prime</span> = <span class="keyword">True</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, <span class="function">int</span>(num ** <span class="number">0.5</span>) + <span class="number">1</span>):
+    <span class="keyword">if</span> num % i == <span class="number">0</span>:
+        is_prime = <span class="keyword">False</span>
+        <span class="function">print</span>(<span class="string">f"{num} is divisible by {i}"</span>)
+        <span class="keyword">break</span>   <span class="comment"># No need to check further!</span>
+
+<span class="keyword">if</span> is_prime:
+    <span class="function">print</span>(<span class="string">f"{num} is a PRIME number! ⭐"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+29 is a PRIME number! ⭐
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🧠 Smart optimization:</strong> We only check up to square root of num. If no divisor found by then, it is prime. break stops as soon as we find ONE divisor!</p>
+</div>
+
+<div class="real-life">
+<h4>🌍 Real Life Analogy</h4>
+<p><span class="real-life-icon">🚨</span><strong>Fire Alarm in a Building:</strong> You are checking every room for a fire. As soon as you find ONE room with fire, you pull the alarm (break) and evacuate everyone. You do not keep checking other rooms — the job is done!</p>
+</div>
+
+<!-- SECTION 4: continue -->
+<h2>📌 4. continue Statement</h2>
+
+<h3>What does continue do?</h3>
+<p><code>continue</code> says: <strong>"Skip the rest of THIS round, and go to the NEXT round immediately!"</strong> It does not stop the loop — it just skips the current item.</p>
+
+<div class="formula-box">
+⏭️ <code>continue</code> = "Skip this one, next please!"
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example: Skip Even Numbers</h4>
+<div class="code-block">
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>):
+    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>:
+        <span class="keyword">continue</span>   <span class="comment"># Skip even numbers</span>
+    <span class="function">print</span>(i)
+</div>
+<div class="output-box">
+Output:<br>
+1<br>3<br>5<br>7<br>9
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🔍 What happened?</strong> When i=2, the if is True, so continue runs → skips print(i). Then i=3, if is False, so print runs. And so on!</p>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example: Process Only Valid Emails</h4>
+<div class="code-block">
+<span class="keyword">emails</span> = [<span class="string">"alice@gmail.com"</span>, <span class="string">""</span>, <span class="string">"bob@yahoo.com"</span>, <span class="string">"invalid"</span>, <span class="string">"charlie@outlook.com"</span>]
+
+<span class="keyword">for</span> email <span class="keyword">in</span> emails:
+    <span class="keyword">if</span> <span class="string">"@"</span> <span class="keyword">not in</span> email:
+        <span class="function">print</span>(<span class="string">f"Skipping invalid: {email}"</span>)
+        <span class="keyword">continue</span>
+
+    <span class="function">print</span>(<span class="string">f"✅ Sending email to: {email}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+✅ Sending email to: alice@gmail.com<br>
+Skipping invalid: <br>
+✅ Sending email to: bob@yahoo.com<br>
+Skipping invalid: invalid<br>
+✅ Sending email to: charlie@outlook.com
+</div>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example: Process Data with Multiple Filters</h4>
+<div class="code-block">
+<span class="keyword">data</span> = [<span class="number">10</span>, <span class="number">-5</span>, <span class="number">20</span>, <span class="number">0</span>, <span class="number">-3</span>, <span class="number">15</span>, <span class="number">8</span>]
+<span class="keyword">total</span> = <span class="number">0</span>
+<span class="keyword">count</span> = <span class="number">0</span>
+
+<span class="keyword">for</span> value <span class="keyword">in</span> data:
+    <span class="keyword">if</span> value <= <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"Skipping non-positive: {value}"</span>)
+        <span class="keyword">continue</span>
+    <span class="keyword">if</span> value % <span class="number">2</span> != <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"Skipping odd: {value}"</span>)
+        <span class="keyword">continue</span>
+
+    total += value
+    count += <span class="number">1</span>
+    <span class="function">print</span>(<span class="string">f"Added: {value}"</span>)
+
+<span class="function">print</span>(<span class="string">f"Sum of valid even positives: {total}"</span>)
+<span class="function">print</span>(<span class="string">f"Count: {count}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Added: 10<br>
+Skipping non-positive: -5<br>
+Added: 20<br>
+Skipping non-positive: 0<br>
+Skipping non-positive: -3<br>
+Skipping odd: 15<br>
+Added: 8<br>
+Sum of valid even positives: 38<br>
+Count: 3
+</div>
+</div>
+
+<div class="real-life">
+<h4>🌍 Real Life Analogy</h4>
+<p><span class="real-life-icon">🍎</span><strong>Inspecting Apples:</strong> You are checking apples in a basket. If one is rotten, you say "Skip this one" (continue) and pick the next apple. You do not stop checking — you just ignore the bad ones and keep going!</p>
+</div>
+
+<div class="highlight-box">
+<strong>break vs continue — Do not Confuse!</strong><br><br>
+🛑 <code>break</code> = STOP the entire loop (emergency exit)<br>
+⏭️ <code>continue</code> = SKIP this round, go to next round<br><br>
+Think of a race: break = quit the race entirely. continue = skip one lap, keep racing.
+</div>
+
+<!-- SECTION 5: else clause -->
+<h2>📌 5. else Clause in Loops</h2>
+
+<h3>What is it?</h3>
+<p>Yes, loops can have an <code>else</code> block! It runs <strong>ONLY if the loop completed normally</strong> (did NOT encounter a <code>break</code>). If break happened, else is skipped.</p>
+
+<div class="formula-box">
+Syntax: <code>for item in sequence:</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;# do stuff</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;if condition:</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break</code><br>
+<code>else:</code><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;# runs ONLY if loop finished without break!</code>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example: Search with "Not Found" Message</h4>
+<div class="code-block">
+<span class="keyword">fruits</span> = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>]
+<span class="keyword">target</span> = <span class="string">"mango"</span>
+
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="keyword">if</span> fruit == target:
+        <span class="function">print</span>(<span class="string">f"Found {target}! 🎉"</span>)
+        <span class="keyword">break</span>
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">f"{target} not found in the list. 😢"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+mango not found in the list. 😢
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🧠 Why this is cool:</strong> The else runs because the loop finished all items WITHOUT hitting break. No need for a separate <code>found</code> flag variable!</p>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example: Prime Number Check (Cleaner Version)</h4>
+<div class="code-block">
+<span class="keyword">num</span> = <span class="number">17</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, num):
+    <span class="keyword">if</span> num % i == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"{num} is NOT prime (divisible by {i})"</span>)
+        <span class="keyword">break</span>
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">f"{num} is PRIME! ⭐"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+17 is PRIME! ⭐
+</div>
+<p style="margin-top:10px; color:#555;"><strong>✨ Elegant!</strong> The else belongs to the FOR loop, not the if. It runs when the for completes normally — meaning no divisor was found!</p>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example: Password Validator with while-else</h4>
+<div class="code-block">
+<span class="keyword">attempts</span> = <span class="number">0</span>
+<span class="keyword">max_attempts</span> = <span class="number">3</span>
+<span class="keyword">password</span> = <span class="string">"secret"</span>
+
+<span class="keyword">while</span> attempts < max_attempts:
+    guess = <span class="function">input</span>(<span class="string">"Password: "</span>)
+    attempts += <span class="number">1</span>
+    <span class="keyword">if</span> guess == password:
+        <span class="function">print</span>(<span class="string">"✅ Access granted!"</span>)
+        <span class="keyword">break</span>
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"🚫 Account locked! Too many failed attempts."</span>)
+</div>
+<div class="output-box">
+Output (if all 3 wrong):<br>
+Password: wrong1<br>
+Password: wrong2<br>
+Password: wrong3<br>
+🚫 Account locked! Too many failed attempts.
+</div>
+</div>
+
+<div class="real-life">
+<h4>🌍 Real Life Analogy</h4>
+<p><span class="real-life-icon">🔍</span><strong>Searching for Keys:</strong> You search every pocket. If you find them (break), you are happy and leave. If you check ALL pockets and do not find them (loop finishes), then you say "I could not find my keys anywhere!" — that is the else clause!</p>
+</div>
+
+<table>
+<tr><th>Situation</th><th>Does else run?</th></tr>
+<tr><td>Loop finishes all iterations</td><td>✅ YES</td></tr>
+<tr><td>Loop hits <code>break</code></td><td>❌ NO</td></tr>
+<tr><td>Loop hits <code>continue</code></td><td>✅ YES (continue does not stop the loop)</td></tr>
+<tr><td>Empty sequence (nothing to loop)</td><td>✅ YES (loop "finished" immediately)</td></tr>
+</table>
+
+<!-- SECTION 6: Nested Loops -->
+<h2>📌 6. Nested Loops</h2>
+
+<h3>What are Nested Loops?</h3>
+<p>A loop <strong>inside another loop</strong>. The inner loop runs COMPLETELY for each single iteration of the outer loop. Like hours and minutes on a clock!</p>
+
+<div class="formula-box">
+Syntax: <code>for outer in range(3):</code> &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e74c3c">← Outer loop</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;for inner in range(3):</code> &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#e74c3c">← Inner loop</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# do something</code>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example 1: Simple Multiplication Table</h4>
+<div class="code-block">
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">4</span>):
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">4</span>):
+        <span class="function">print</span>(<span class="string">f"{i} x {j} = {i*j}"</span>)
+    <span class="function">print</span>(<span class="string">"---"</span>)   <span class="comment"># Separator after each row</span>
+</div>
+<div class="output-box">
+Output:<br>
+1 x 1 = 1<br>
+1 x 2 = 2<br>
+1 x 3 = 3<br>
+---<br>
+2 x 1 = 2<br>
+2 x 2 = 4<br>
+2 x 3 = 6<br>
+---<br>
+3 x 1 = 3<br>
+3 x 2 = 6<br>
+3 x 3 = 9<br>
+---
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🔍 How it works:</strong> Outer i=1 → inner j runs 1,2,3. Then outer i=2 → inner j runs 1,2,3 again. Then i=3. Total: 3 × 3 = 9 iterations!</p>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Beginner Example 2: Print a Right Triangle</h4>
+<div class="code-block">
+<span class="keyword">rows</span> = <span class="number">5</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, rows + <span class="number">1</span>):
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(i):
+        <span class="function">print</span>(<span class="string">"*"</span>, end=<span class="string">" "</span>)
+    <span class="function">print</span>()
+</div>
+<div class="output-box">
+Output:<br>
+* <br>
+* * <br>
+* * * <br>
+* * * * <br>
+* * * * *
+</div>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example: Find Common Elements</h4>
+<div class="code-block">
+<span class="keyword">list_a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<span class="keyword">list_b</span> = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]
+<span class="keyword">common</span> = []
+
+<span class="keyword">for</span> a <span class="keyword">in</span> list_a:
+    <span class="keyword">for</span> b <span class="keyword">in</span> list_b:
+        <span class="keyword">if</span> a == b:
+            common.<span class="function">append</span>(a)
+            <span class="keyword">break</span>   <span class="comment"># Found match, no need to check more</span>
+
+<span class="function">print</span>(<span class="string">f"Common elements: {common}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Common elements: [4, 5]
+</div>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Intermediate Example: Matrix Transpose</h4>
+<div class="code-block">
+<span class="comment"># Original matrix (2D list)</span>
+<span class="keyword">matrix</span> = [
+    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],
+    [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],
+    [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+]
+
+<span class="comment"># Transpose: rows become columns</span>
+<span class="keyword">transpose</span> = []
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="function">len</span>(matrix[<span class="number">0</span>])):
+    <span class="keyword">row</span> = []
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(<span class="function">len</span>(matrix)):
+        row.<span class="function">append</span>(matrix[j][i])
+    transpose.<span class="function">append</span>(row)
+
+<span class="keyword">for</span> row <span class="keyword">in</span> transpose:
+    <span class="function">print</span>(row)
+</div>
+<div class="output-box">
+Output:<br>
+[1, 4, 7]<br>
+[2, 5, 8]<br>
+[3, 6, 9]
+</div>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example: Bubble Sort Algorithm</h4>
+<div class="code-block">
+<span class="keyword">numbers</span> = [<span class="number">64</span>, <span class="number">34</span>, <span class="number">25</span>, <span class="number">12</span>, <span class="number">22</span>, <span class="number">11</span>, <span class="number">90</span>]
+<span class="keyword">n</span> = <span class="function">len</span>(numbers)
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(n):
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(<span class="number">0</span>, n - i - <span class="number">1</span>):
+        <span class="keyword">if</span> numbers[j] > numbers[j + <span class="number">1</span>]:
+            <span class="comment"># Swap!</span>
+            numbers[j], numbers[j + <span class="number">1</span>] = numbers[j + <span class="number">1</span>], numbers[j]
+
+<span class="function">print</span>(<span class="string">f"Sorted: {numbers}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Sorted: [11, 12, 22, 25, 34, 64, 90]
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🧠 How Bubble Sort works:</strong> Outer loop controls passes. Inner loop compares adjacent pairs and swaps if out of order. After each pass, the largest unsorted number "bubbles" to the end!</p>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Advanced Example: Pattern with break in Nested Loop</h4>
+<div class="code-block">
+<span class="comment"># Find first pair that sums to target</span>
+<span class="keyword">nums</span> = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]
+<span class="keyword">target</span> = <span class="number">9</span>
+<span class="keyword">found</span> = <span class="keyword">False</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="function">len</span>(nums)):
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(i + <span class="number">1</span>, <span class="function">len</span>(nums)):
+        <span class="keyword">if</span> nums[i] + nums[j] == target:
+            <span class="function">print</span>(<span class="string">f"Pair found: ({nums[i]}, {nums[j]}) at indices ({i}, {j})"</span>)
+            found = <span class="keyword">True</span>
+            <span class="keyword">break</span>
+    <span class="keyword">if</span> found:
+        <span class="keyword">break</span>
+</div>
+<div class="output-box">
+Output:<br>
+Pair found: (2, 7) at indices (0, 1)
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🎯 Two breaks needed!</strong> The inner break exits the inner loop. But we are still in the outer loop! So we need a flag + second break to exit the outer loop too.</p>
+</div>
+
+<div class="real-life">
+<h4>🌍 Real Life Analogy</h4>
+<p><span class="real-life-icon">🎬</span><strong>Movie Theater Seats:</strong> Outer loop = "Go to Row 1, then Row 2, then Row 3..." Inner loop = "Check Seat A, then Seat B, then Seat C..." For EACH row, you check ALL seats. That is nested loops!</p>
+</div>
+
+<div class="warning-box">
+<strong>Performance Warning:</strong> Nested loops can be SLOW! If outer loop runs N times and inner loop runs N times, total operations = N × N = N squared. For N=1000, that is 1 MILLION operations! Be careful with large data.
+</div>
+
+<!-- SECTION 7: Optimization -->
+<h2>📌 7. Loop Optimization Techniques</h2>
+
+<h3>Why Optimize?</h3>
+<p>Bad loops can make your program SLOW. A few smart changes can make it 10x or even 100x faster! Here are the techniques every Python programmer should know:</p>
+
+<div class="beginner-box">
+<h4>🌱 Technique 1: Use Built-in Functions (They are Written in C!)</h4>
+<div class="code-block">
+<span class="comment"># ❌ SLOW: Manual loop</span>
+<span class="keyword">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+<span class="keyword">total</span> = <span class="number">0</span>
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    total += num
+
+<span class="comment"># ✅ FAST: Built-in sum()</span>
+<span class="keyword">total</span> = <span class="function">sum</span>(numbers)
+
+<span class="comment"># Other built-ins to use:</span>
+<span class="comment"># max(), min(), len(), any(), all(), sorted()</span>
+</div>
+<div class="output-box">
+Both give: 15<br>
+But sum() is 5-10x faster because it is written in C!
+</div>
+</div>
+
+<div class="beginner-box">
+<h4>🌱 Technique 2: Use List Comprehensions</h4>
+<div class="code-block">
+<span class="keyword">numbers</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="comment"># ❌ SLOW: Traditional for loop</span>
+<span class="keyword">squares</span> = []
+<span class="keyword">for</span> n <span class="keyword">in</span> numbers:
+    squares.<span class="function">append</span>(n ** <span class="number">2</span>)
+
+<span class="comment"># ✅ FAST: List comprehension</span>
+<span class="keyword">squares</span> = [n ** <span class="number">2</span> <span class="keyword">for</span> n <span class="keyword">in</span> numbers]
+
+<span class="function">print</span>(squares)
+</div>
+<div class="output-box">
+Output:<br>
+[1, 4, 9, 16, 25]
+</div>
+<p style="margin-top:10px; color:#555;"><strong>⚡ Speed boost:</strong> List comprehensions are 2-3x faster and use less memory!</p>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Technique 3: Use Generators for Large Data</h4>
+<div class="code-block">
+<span class="comment"># ❌ BAD: Creates a HUGE list in memory</span>
+<span class="keyword">big_list</span> = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1000000</span>)]
+<span class="keyword">total</span> = <span class="function">sum</span>(big_list)
+
+<span class="comment"># ✅ GOOD: Generator — calculates one at a time, saves memory!</span>
+<span class="keyword">big_gen</span> = (x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1000000</span>))
+<span class="keyword">total</span> = <span class="function">sum</span>(big_gen)
+
+<span class="function">print</span>(<span class="string">f"Sum = {total}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Sum = 333332833333500000<br>
+<br>
+Generator uses almost ZERO extra memory!
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🧠 How generators work:</strong> Instead of storing all 1 million squares in RAM, it calculates each square only when needed, then forgets it. Perfect for huge datasets!</p>
+</div>
+
+<div class="intermediate-box">
+<h4>🌿 Technique 4: Avoid Repeated Calculations in Loops</h4>
+<div class="code-block">
+<span class="keyword">data</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="comment"># ❌ BAD: Calculates len(data) EVERY iteration</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="function">len</span>(data)):
+    <span class="function">print</span>(data[i])
+
+<span class="comment"># ✅ GOOD: Calculate once, store in variable</span>
+<span class="keyword">n</span> = <span class="function">len</span>(data)
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(n):
+    <span class="function">print</span>(data[i])
+
+<span class="comment"># ✅ EVEN BETTER: Direct iteration (no indexing needed)</span>
+<span class="keyword">for</span> item <span class="keyword">in</span> data:
+    <span class="function">print</span>(item)
+</div>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Technique 5: Use Sets for Membership Testing</h4>
+<div class="code-block">
+<span class="comment"># ❌ SLOW: Checking if item in list — O(N) each time</span>
+<span class="keyword">big_list</span> = <span class="function">list</span>(<span class="function">range</span>(<span class="number">100000</span>))
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1000</span>):
+    <span class="keyword">if</span> i <span class="keyword">in</span> big_list:   <span class="comment"># Checks 100k items each time!</span>
+        <span class="function">print</span>(i)
+
+<span class="comment"># ✅ FAST: Convert to set first — O(1) lookup!</span>
+<span class="keyword">big_set</span> = <span class="function">set</span>(big_list)
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1000</span>):
+    <span class="keyword">if</span> i <span class="keyword">in</span> big_set:   <span class="comment"># Instant lookup!</span>
+        <span class="function">print</span>(i)
+</div>
+<div class="output-box">
+Set lookup: O(1) — instant!<br>
+List lookup: O(N) — scans entire list<br>
+For 1000 checks: Set = ~1000 ops, List = ~100 MILLION ops!
+</div>
+</div>
+
+<div class="advanced-box">
+<h4>🔥 Technique 6: Early Exit with break</h4>
+<div class="code-block">
+<span class="keyword">numbers</span> = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">12</span>]
+
+<span class="comment"># ❌ BAD: Checks ALL items even after finding answer</span>
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"First even: {num}"</span>)
+
+<span class="comment"># ✅ GOOD: Exit immediately after finding answer</span>
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    <span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"First even: {num}"</span>)
+        <span class="keyword">break</span>   <span class="comment"># Stop! We are done.</span>
+</div>
+</div>
+
+<div class="pro-box">
+<h4>🚀 Pro Tip: The "Pythonic" Way</h4>
+<p>Python has a philosophy: <strong>"There should be one — and preferably only one — obvious way to do it."</strong></p>
+<p>When in doubt, prefer:</p>
+<ul style="margin-left:20px; margin-top:10px;">
+<li>✅ Built-in functions over manual loops</li>
+<li>✅ List comprehensions over for-loops for simple cases</li>
+<li>✅ Direct iteration (<code>for item in list</code>) over indexing (<code>for i in range(len(list))</code>)</li>
+<li>✅ Generators over lists for huge data</li>
+<li>✅ Sets over lists for membership tests</li>
+</ul>
+</div>
+
+<table class="comparison-table">
+<tr>
+<th>Technique</th>
+<th>When to Use</th>
+<th>Speed Gain</th>
+</tr>
+<tr>
+<td>Built-in functions</td>
+<td>sum, max, min, len, etc.</td>
+<td>5-10x</td>
+</tr>
+<tr>
+<td>List comprehensions</td>
+<td>Creating new lists from old ones</td>
+<td>2-3x</td>
+</tr>
+<tr>
+<td>Generators</td>
+<td>Large datasets, one-pass operations</td>
+<td>Infinite memory savings!</td>
+</tr>
+<tr>
+<td>Sets for lookup</td>
+<td>Frequent "in" checks</td>
+<td>1000x+ for large data</td>
+</tr>
+<tr>
+<td>break early</td>
+<td>Search operations</td>
+<td>Up to Nx (skips rest)</td>
+</tr>
+</table>
+
+<!-- PRACTICE PROBLEMS -->
+<h2>📌 8. Practice Problems (Beginner → Advanced)</h2>
+
+<div class="problem-box">
+<h4>📝 Problem 1: Print 1 to 10 <span class="level-tag tag-beginner">Beginner</span></h4>
+<p>Use a for loop to print numbers 1 through 10.</p>
+<button class="toggle-btn" onclick="toggleSolution('sol1')">Show Solution</button>
+<div id="sol1" class="solution">
+<div class="code-block">
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>):
+    <span class="function">print</span>(i)
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 2: Countdown Timer <span class="level-tag tag-beginner">Beginner</span></h4>
+<p>Use a while loop to count down from 10 to 1, then print "BLAST OFF! 🚀"</p>
+<button class="toggle-btn" onclick="toggleSolution('sol2')">Show Solution</button>
+<div id="sol2" class="solution">
+<div class="code-block">
+<span class="keyword">count</span> = <span class="number">10</span>
+<span class="keyword">while</span> count > <span class="number">0</span>:
+    <span class="function">print</span>(count)
+    count -= <span class="number">1</span>
+<span class="function">print</span>(<span class="string">"BLAST OFF! 🚀"</span>)
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 3: Sum of Even Numbers <span class="level-tag tag-beginner">Beginner</span></h4>
+<p>Calculate the sum of all even numbers from 1 to 20 using a for loop.</p>
+<button class="toggle-btn" onclick="toggleSolution('sol3')">Show Solution</button>
+<div id="sol3" class="solution">
+<div class="code-block">
+<span class="keyword">total</span> = <span class="number">0</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, <span class="number">21</span>, <span class="number">2</span>):
+    total += i
+<span class="function">print</span>(<span class="string">f"Sum of even numbers: {total}"</span>)
+
+<span class="comment"># Alternative using step in range</span>
+<span class="comment"># range(2, 21, 2) gives: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20</span>
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 4: Multiplication Table <span class="level-tag tag-beginner">Beginner</span></h4>
+<p>Print the multiplication table of 5 (5×1 to 5×10).</p>
+<button class="toggle-btn" onclick="toggleSolution('sol4')">Show Solution</button>
+<div id="sol4" class="solution">
+<div class="code-block">
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">11</span>):
+    <span class="function">print</span>(<span class="string">f"5 x {i} = {5 * i}"</span>)
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 5: Find Factorial <span class="level-tag tag-intermediate">Intermediate</span></h4>
+<p>Write a program to calculate factorial of a number using a while loop. Factorial of 5 = 5×4×3×2×1 = 120</p>
+<button class="toggle-btn" onclick="toggleSolution('sol5')">Show Solution</button>
+<div id="sol5" class="solution">
+<div class="code-block">
+<span class="keyword">n</span> = <span class="number">5</span>
+<span class="keyword">factorial</span> = <span class="number">1</span>
+<span class="keyword">i</span> = <span class="number">1</span>
+
+<span class="keyword">while</span> i <= n:
+    factorial *= i
+    i += <span class="number">1</span>
+
+<span class="function">print</span>(<span class="string">f"{n}! = {factorial}"</span>)
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 6: Reverse a String <span class="level-tag tag-intermediate">Intermediate</span></h4>
+<p>Reverse a string without using the [::-1] shortcut. Use a loop!</p>
+<button class="toggle-btn" onclick="toggleSolution('sol6')">Show Solution</button>
+<div id="sol6" class="solution">
+<div class="code-block">
+<span class="keyword">text</span> = <span class="string">"Python"</span>
+<span class="keyword">reversed_text</span> = <span class="string">""</span>
+
+<span class="keyword">for</span> char <span class="keyword">in</span> text:
+    reversed_text = char + reversed_text
+
+<span class="function">print</span>(<span class="string">f"Original: {text}"</span>)
+<span class="function">print</span>(<span class="string">f"Reversed: {reversed_text}"</span>)
+
+<span class="comment"># How it works:</span>
+<span class="comment"># Step 1: 'P' + '' = 'P'</span>
+<span class="comment"># Step 2: 'y' + 'P' = 'yP'</span>
+<span class="comment"># Step 3: 't' + 'yP' = 'tyP'</span>
+<span class="comment"># ...and so on!</span>
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 7: Find First Negative Number <span class="level-tag tag-intermediate">Intermediate</span></h4>
+<p>Given a list of numbers, find and print the FIRST negative number. Use break!</p>
+<button class="toggle-btn" onclick="toggleSolution('sol7')">Show Solution</button>
+<div id="sol7" class="solution">
+<div class="code-block">
+<span class="keyword">numbers</span> = [<span class="number">3</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">-5</span>, <span class="number">8</span>, <span class="number">-1</span>]
+
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    <span class="keyword">if</span> num < <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"First negative: {num}"</span>)
+        <span class="keyword">break</span>
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 8: Skip Multiples of 3 <span class="level-tag tag-intermediate">Intermediate</span></h4>
+<p>Print numbers 1 to 20, but skip multiples of 3 using continue.</p>
+<button class="toggle-btn" onclick="toggleSolution('sol8')">Show Solution</button>
+<div id="sol8" class="solution">
+<div class="code-block">
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">21</span>):
+    <span class="keyword">if</span> i % <span class="number">3</span> == <span class="number">0</span>:
+        <span class="keyword">continue</span>
+    <span class="function">print</span>(i, end=<span class="string">" "</span>)
+
+<span class="comment"># Output: 1 2 4 5 7 8 10 11 13 14 16 17 19 20</span>
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 9: Prime Number Check with else <span class="level-tag tag-intermediate">Intermediate</span></h4>
+<p>Check if a number is prime using a for-else loop.</p>
+<button class="toggle-btn" onclick="toggleSolution('sol9')">Show Solution</button>
+<div id="sol9" class="solution">
+<div class="code-block">
+<span class="keyword">num</span> = <span class="number">29</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, <span class="function">int</span>(num ** <span class="number">0.5</span>) + <span class="number">1</span>):
+    <span class="keyword">if</span> num % i == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">f"{num} is NOT prime"</span>)
+        <span class="keyword">break</span>
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">f"{num} is PRIME! ⭐"</span>)
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 10: Print a Pyramid Pattern <span class="level-tag tag-intermediate">Intermediate</span></h4>
+<p>Use nested loops to print this pyramid (height = 5):</p>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px; margin:10px 0;">
+    *
+   ***
+  *****
+ *******
+*********
+</pre>
+<button class="toggle-btn" onclick="toggleSolution('sol10')">Show Solution</button>
+<div id="sol10" class="solution">
+<div class="code-block">
+<span class="keyword">height</span> = <span class="number">5</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, height + <span class="number">1</span>):
+    <span class="comment"># Print spaces</span>
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(height - i):
+        <span class="function">print</span>(<span class="string">" "</span>, end=<span class="string">""</span>)
+    <span class="comment"># Print stars</span>
+    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span> * i - <span class="number">1</span>):
+        <span class="function">print</span>(<span class="string">"*"</span>, end=<span class="string">""</span>)
+    <span class="function">print</span>()
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 11: Two Sum Problem <span class="level-tag tag-advanced">Advanced</span></h4>
+<p>Find two numbers in a list that add up to a target. Return their indices. Use nested loops with break!</p>
+<button class="toggle-btn" onclick="toggleSolution('sol11')">Show Solution</button>
+<div id="sol11" class="solution">
+<div class="code-block">
+<span class="keyword">nums</span> = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>]
+<span class="keyword">target</span> = <span class="number">9</span>
+<span class="keyword">found</span> = <span class="keyword">False</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="function">len</span>(nums)):
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(i + <span class="number">1</span>, <span class="function">len</span>(nums)):
+        <span class="keyword">if</span> nums[i] + nums[j] == target:
+            <span class="function">print</span>(<span class="string">f"Indices: ({i}, {j}) → {nums[i]} + {nums[j]} = {target}"</span>)
+            found = <span class="keyword">True</span>
+            <span class="keyword">break</span>
+    <span class="keyword">if</span> found:
+        <span class="keyword">break</span>
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 12: Optimized Prime Sieve <span class="level-tag tag-advanced">Advanced</span></h4>
+<p>Find all prime numbers up to 50 using the Sieve of Eratosthenes algorithm.</p>
+<button class="toggle-btn" onclick="toggleSolution('sol12')">Show Solution</button>
+<div id="sol12" class="solution">
+<div class="code-block">
+<span class="keyword">n</span> = <span class="number">50</span>
+<span class="comment"># True means "might be prime"</span>
+<span class="keyword">is_prime</span> = [<span class="keyword">True</span>] * (n + <span class="number">1</span>)
+is_prime[<span class="number">0</span>] = is_prime[<span class="number">1</span>] = <span class="keyword">False</span>
+
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, <span class="function">int</span>(n ** <span class="number">0.5</span>) + <span class="number">1</span>):
+    <span class="keyword">if</span> is_prime[i]:
+        <span class="comment"># Mark all multiples of i as NOT prime</span>
+        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(i * i, n + <span class="number">1</span>, i):
+            is_prime[j] = <span class="keyword">False</span>
+
+<span class="comment"># Collect all primes</span>
+<span class="keyword">primes</span> = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">2</span>, n + <span class="number">1</span>) <span class="keyword">if</span> is_prime[i]]
+<span class="function">print</span>(<span class="string">f"Primes up to {n}: {primes}"</span>)
+</div>
+<div class="output-box">
+Output:<br>
+Primes up to 50: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 13: Password Strength Checker <span class="level-tag tag-advanced">Advanced</span></h4>
+<p>Check if a password is strong. Strong = at least 8 chars, has uppercase, lowercase, digit, and special character.</p>
+<button class="toggle-btn" onclick="toggleSolution('sol13')">Show Solution</button>
+<div id="sol13" class="solution">
+<div class="code-block">
+<span class="keyword">password</span> = <span class="string">"Hello@123"</span>
+
+<span class="keyword">has_upper</span> = <span class="keyword">False</span>
+<span class="keyword">has_lower</span> = <span class="keyword">False</span>
+<span class="keyword">has_digit</span> = <span class="keyword">False</span>
+<span class="keyword">has_special</span> = <span class="keyword">False</span>
+
+<span class="keyword">for</span> char <span class="keyword">in</span> password:
+    <span class="keyword">if</span> char.<span class="function">isupper</span>():
+        has_upper = <span class="keyword">True</span>
+    <span class="keyword">elif</span> char.<span class="function">islower</span>():
+        has_lower = <span class="keyword">True</span>
+    <span class="keyword">elif</span> char.<span class="function">isdigit</span>():
+        has_digit = <span class="keyword">True</span>
+    <span class="keyword">else</span>:
+        has_special = <span class="keyword">True</span>
+
+<span class="keyword">if</span> <span class="function">len</span>(password) >= <span class="number">8</span> <span class="keyword">and</span> has_upper <span class="keyword">and</span> has_lower <span class="keyword">and</span> has_digit <span class="keyword">and</span> has_special:
+    <span class="function">print</span>(<span class="string">"✅ Strong password!"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"❌ Weak password!"</span>)
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Problem 14: Flatten a 2D List <span class="level-tag tag-advanced">Advanced</span></h4>
+<p>Convert a nested list into a single flat list using nested loops.</p>
+<button class="toggle-btn" onclick="toggleSolution('sol14')">Show Solution</button>
+<div id="sol14" class="solution">
+<div class="code-block">
+<span class="keyword">matrix</span> = [
+    [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],
+    [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],
+    [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+]
+
+<span class="keyword">flat</span> = []
+<span class="keyword">for</span> row <span class="keyword">in</span> matrix:
+    <span class="keyword">for</span> item <span class="keyword">in</span> row:
+        flat.<span class="function">append</span>(item)
+
+<span class="function">print</span>(flat)
+
+<span class="comment"># One-liner using list comprehension:</span>
+<span class="comment"># flat = [item for row in matrix for item in row]</span>
+</div>
+<div class="output-box">
+Output:<br>
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+</div>
+</div>
+</div>
+
+<div class="problem-box">
+<h4>📝 Challenge: FizzBuzz <span class="level-tag tag-intermediate">Classic!</span></h4>
+<p>Print numbers 1 to 100. But for multiples of 3 print "Fizz", for multiples of 5 print "Buzz", for multiples of both print "FizzBuzz".</p>
+<button class="toggle-btn" onclick="toggleSolution('sol15')">Show Solution</button>
+<div id="sol15" class="solution">
+<div class="code-block">
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">101</span>):
+    <span class="keyword">if</span> i % <span class="number">3</span> == <span class="number">0</span> <span class="keyword">and</span> i % <span class="number">5</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"FizzBuzz"</span>)
+    <span class="keyword">elif</span> i % <span class="number">3</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"Fizz"</span>)
+    <span class="keyword">elif</span> i % <span class="number">5</span> == <span class="number">0</span>:
+        <span class="function">print</span>(<span class="string">"Buzz"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(i)
+</div>
+<p style="margin-top:10px; color:#555;"><strong>🎯 This is a famous interview question!</strong> The trick is checking BOTH conditions (3 AND 5) FIRST, before checking individually.</p>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<h2>📌 9. Summary: Which Loop to Use?</h2>
+
+<div class="step-box">
+<div class="step-number">1</div>
+<strong>Use for loop</strong> when you know how many times to repeat (lists, strings, ranges)
+</div>
+<div class="step-box">
+<div class="step-number">2</div>
+<strong>Use while loop</strong> when you don't know — keep going until a condition changes
+</div>
+<div class="step-box">
+<div class="step-number">3</div>
+<strong>Use break</strong> when you found what you need — stop searching!
+</div>
+<div class="step-box">
+<div class="step-number">4</div>
+<strong>Use continue</strong> when you want to skip bad data but keep processing
+</div>
+<div class="step-box">
+<div class="step-number">5</div>
+<strong>Use loop-else</strong> when you need a "not found" message after searching
+</div>
+<div class="step-box">
+<div class="step-number">6</div>
+<strong>Use nested loops</strong> for grids, matrices, pairs, and combinations
+</div>
+<div class="step-box">
+<div class="step-number">7</div>
+<strong>Optimize</strong> with built-ins, comprehensions, generators, and sets!
+</div>
+
+<div class="footer">
+<p>🎓 Made with ❤️ for Learning | Python Loops Complete Guide</p>
+<p>Remember: The best loop is the one that makes your code clean, fast, and easy to understand!</p>
+</div>
+
+</div>
+
+<script>
+function toggleSolution(id) {
+    const sol = document.getElementById(id);
+    sol.classList.toggle('show');
+    const btn = sol.previousElementSibling;
+    btn.textContent = sol.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+}
+</script>
+</body>
+</html>
