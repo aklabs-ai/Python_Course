@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitwise Operators & Logic Gates - Complete Notes</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kalam', 'Patrick Hand', 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 50%, #fadbd8 100%);
+            color: #2c3e50;
+            line-height: 1.8;
+            font-size: 18px;
+            padding: 20px;
+        }
+
+        .notebook {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fffef7;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            background-image: 
+                linear-gradient(#e8e8e8 1px, transparent 1px);
+            background-size: 100% 32px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #c0392b;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            border-bottom: 3px dashed #e74c3c;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #2980b9;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 5px solid #3498db;
+            background: linear-gradient(90deg, #ebf5fb, transparent);
+        }
+
+        h3 {
+            font-size: 1.4em;
+            color: #8e44ad;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px dashed #f39c12;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: "💡";
+            font-size: 1.5em;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #fff3cd;
+            padding: 0 10px;
+            border-radius: 50%;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #d5f5e3, #abebc6);
+            border: 2px solid #27ae60;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fadbd8, #f5b7b1);
+            border: 2px solid #e74c3c;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box::before {
+            content: "⚠️";
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e8f4f8;
+            transform: scale(1.01);
+            transition: all 0.2s;
+        }
+
+        .gate-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid #ecf0f1;
+        }
+
+        .gate-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .gate-icon {
+            font-size: 2em;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .gate-title {
+            font-size: 1.6em;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .gate-symbol {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #e8daef, #d7bde2);
+            border-left: 5px solid #8e44ad;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .example-box h4 {
+            color: #6c3483;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .problem-box {
+            background: linear-gradient(135deg, #d6eaf8, #aed6f1);
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .problem-box h4 {
+            color: #2874a6;
+            margin-bottom: 10px;
+        }
+
+        .solution {
+            background: #e8f8f5;
+            border: 1px solid #1abc9c;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .solution.show {
+            display: block;
+        }
+
+        .toggle-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .binary-visual {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .bit {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.3em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .bit-1 {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .bit-0 {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: white;
+        }
+
+        .bit-label {
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .conversion-step {
+            background: #fff9e6;
+            border: 1px solid #f1c40f;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .transistor-table th {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #bdc3c7;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .sticky-note {
+            background: #fffacd;
+            border: 1px solid #f0e68c;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            padding: 15px;
+            margin: 15px 0;
+            transform: rotate(-1deg);
+            border-radius: 2px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #c0392b;
+            font-size: 0.95em;
+        }
+
+        .real-life {
+            background: linear-gradient(135deg, #d5f4e6, #a9dfbf);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #27ae60;
+        }
+
+        .real-life h4 {
+            color: #1e8449;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .real-life-icon {
+            font-size: 2em;
+            float: left;
+            margin-right: 15px;
+        }
+
+        @media print {
+            body { background: white; }
+            .notebook { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook">
+        <h1>📝 Bitwise Operators & Logic Gates</h1>
+        <p style="text-align:center; color:#7f8c8d; font-size:1.1em;">Complete Crash Course Notes from Scratch</p>
+
+        <!-- SECTION 1: Binary Numbers -->
+        <h2>📌 1. What are Binary Numbers?</h2>
+
+        <div class="highlight-box">
+            <strong>Binary Number System</strong> is a base-2 number system that uses only <strong>two digits: 0 and 1</strong>. 
+            Every computer, smartphone, and digital device uses binary because electronic circuits can only understand two states: 
+            <span style="color:#e74c3c; font-weight:bold;">ON (1)</span> and <span style="color:#7f8c8d; font-weight:bold;">OFF (0)</span>.
+        </div>
+
+        <h3>Why Binary? The Simple Reason!</h3>
+        <p>Imagine a light switch in your room:</p>
+        <div class="binary-visual">
+            <div style="text-align:center">
+                <div class="bit bit-0">0</div>
+                <div class="bit-label">OFF<br>💡</div>
+            </div>
+            <div style="text-align:center">
+                <div class="bit bit-1">1</div>
+                <div class="bit-label">ON<br>💡</div>
+            </div>
+        </div>
+
+        <div class="sticky-note">
+            <strong>🔑 Key Point:</strong> A single binary digit (0 or 1) is called a <strong>BIT</strong>. 
+            8 bits together make a <strong>BYTE</strong>. Everything in your computer — photos, videos, games — is stored as millions of 0s and 1s!
+        </div>
+
+        <h3>Binary Counting (0 to 15)</h3>
+        <table>
+            <tr>
+                <th>Decimal</th><th>Binary</th><th>Decimal</th><th>Binary</th>
+            </tr>
+            <tr><td>0</td><td>0000</td><td>8</td><td>1000</td></tr>
+            <tr><td>1</td><td>0001</td><td>9</td><td>1001</td></tr>
+            <tr><td>2</td><td>0010</td><td>10</td><td>1010</td></tr>
+            <tr><td>3</td><td>0011</td><td>11</td><td>1011</td></tr>
+            <tr><td>4</td><td>0100</td><td>12</td><td>1100</td></tr>
+            <tr><td>5</td><td>0101</td><td>13</td><td>1101</td></tr>
+            <tr><td>6</td><td>0110</td><td>14</td><td>1110</td></tr>
+            <tr><td>7</td><td>0111</td><td>15</td><td>1111</td></tr>
+        </table>
+
+        <!-- SECTION 2: Conversions -->
+        <h2>📌 2. Binary ↔ Decimal Conversions</h2>
+
+        <h3>2.1 Decimal to Binary Conversion</h3>
+        <div class="formula-box">
+            Method: <strong>Divide by 2</strong> repeatedly and collect <strong>remainders from bottom to top</strong>!
+        </div>
+
+        <div class="example-box">
+            <h4>✏️ Example: Convert 13 to Binary</h4>
+            <div class="conversion-step">
+                <p><strong>Step 1:</strong> 13 ÷ 2 = 6 remainder <strong style="color:#e74c3c">1</strong></p>
+                <p><strong>Step 2:</strong> 6 ÷ 2 = 3 remainder <strong style="color:#e74c3c">0</strong></p>
+                <p><strong>Step 3:</strong> 3 ÷ 2 = 1 remainder <strong style="color:#e74c3c">1</strong></p>
+                <p><strong>Step 4:</strong> 1 ÷ 2 = 0 remainder <strong style="color:#e74c3c">1</strong></p>
+                <p><strong>Answer:</strong> Read remainders from bottom → top: <code>1101</code></p>
+            </div>
+        </div>
+
+        <h3>2.2 Binary to Decimal Conversion</h3>
+        <div class="formula-box">
+            Method: Multiply each bit by <strong>2<sup>position</sup></strong> (from right, starting at 0) and add them up!
+        </div>
+
+        <div class="example-box">
+            <h4>✏️ Example: Convert 1011 to Decimal</h4>
+            <div class="conversion-step">
+                <table style="width:auto; margin:10px auto;">
+                    <tr>
+                        <th>Position</th><td>3</td><td>2</td><td>1</td><td>0</td>
+                    </tr>
+                    <tr>
+                        <th>Bit</th><td>1</td><td>0</td><td>1</td><td>1</td>
+                    </tr>
+                    <tr>
+                        <th>Value</th><td>1×2³</td><td>0×2²</td><td>1×2¹</td><td>1×2⁰</td>
+                    </tr>
+                    <tr>
+                        <th>=</th><td>8</td><td>0</td><td>2</td><td>1</td>
+                    </tr>
+                </table>
+                <p style="text-align:center; font-size:1.2em;"><strong>8 + 0 + 2 + 1 = 11</strong></p>
+                <p style="text-align:center;">So, <code>1011₂ = 11₁₀</code></p>
+            </div>
+        </div>
+
+        <div class="real-life">
+            <h4>🌍 Real Life: Why does this matter?</h4>
+            <p><span class="real-life-icon">🎮</span>Your game score of <strong>255</strong> is stored as <code>11111111</code> in 8-bit systems. That's why old games had max scores of 255 — they ran out of bits!</p>
+        </div>
+
+        <!-- SECTION 3: Logic Gates -->
+        <h2>📌 3. Logic Gates - The Building Blocks</h2>
+
+        <div class="highlight-box">
+            <strong>Logic Gates</strong> are electronic circuits that perform <strong>logical operations</strong> on one or more binary inputs to produce a single binary output. They are built using <strong>transistors</strong> — tiny electronic switches!
+        </div>
+
+        <!-- NOT Gate -->
+        <div class="gate-section">
+            <div class="gate-header">
+                <div class="gate-icon">🔁</div>
+                <div class="gate-title">NOT Gate (Inverter)</div>
+            </div>
+            <p><strong>Function:</strong> Outputs the <strong>opposite</strong> of the input. If input is 1, output is 0, and vice versa.</p>
+
+            <div class="gate-symbol">
+                <svg width="200" height="100" viewBox="0 0 200 100">
+                    <polygon points="40,20 40,80 120,50" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <circle cx="130" cy="50" r="8" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="50" x2="40" y2="50" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="138" y1="50" x2="180" y2="50" stroke="#2c3e50" stroke-width="3"/>
+                    <text x="15" y="40" font-family="Kalam" font-size="16">A</text>
+                    <text x="155" y="40" font-family="Kalam" font-size="16">Y = Ā</text>
+                </svg>
+            </div>
+
+            <h4>Truth Table</h4>
+            <table>
+                <tr><th>Input (A)</th><th>Output (Y = NOT A)</th></tr>
+                <tr><td>0</td><td style="color:#e74c3c; font-weight:bold;">1</td></tr>
+                <tr><td>1</td><td style="color:#e74c3c; font-weight:bold;">0</td></tr>
+            </table>
+
+            <h4>Transistor Implementation</h4>
+            <table class="transistor-table">
+                <tr><th>Input A</th><th>Transistor State</th><th>Output Y</th></tr>
+                <tr><td>0 (0V)</td><td>OFF (Open)</td><td>1 (Connected to Vcc)</td></tr>
+                <tr><td>1 (5V)</td><td>ON (Closed)</td><td>0 (Connected to GND)</td></tr>
+            </table>
+
+            <div class="real-life">
+                <h4>🌍 Real Life Example</h4>
+                <p><span class="real-life-icon">🚪</span>A <strong>light switch with a NOT gate</strong>: When the switch is OFF (0), the light is ON (1). When you flip the switch ON (1), the light turns OFF (0). It's like a "reverse switch"!</p>
+            </div>
+        </div>
+
+        <!-- AND Gate -->
+        <div class="gate-section">
+            <div class="gate-header">
+                <div class="gate-icon" style="background:linear-gradient(135deg, #e74c3c, #c0392b)">🔀</div>
+                <div class="gate-title">AND Gate</div>
+            </div>
+            <p><strong>Function:</strong> Output is <strong>1 ONLY when ALL inputs are 1</strong>. Like saying "Both conditions must be true!"</p>
+
+            <div class="gate-symbol">
+                <svg width="200" height="120" viewBox="0 0 200 120">
+                    <path d="M40,20 L40,100 L80,100 A40,40 0 0,0 80,20 Z" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="40" x2="40" y2="40" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="80" x2="40" y2="80" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="120" y1="60" x2="180" y2="60" stroke="#2c3e50" stroke-width="3"/>
+                    <text x="15" y="35" font-family="Kalam" font-size="16">A</text>
+                    <text x="15" y="75" font-family="Kalam" font-size="16">B</text>
+                    <text x="140" y="50" font-family="Kalam" font-size="16">Y = A·B</text>
+                </svg>
+            </div>
+
+            <h4>Truth Table</h4>
+            <table>
+                <tr><th>A</th><th>B</th><th>Y = A AND B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+            </table>
+
+            <h4>Transistor Implementation (2 transistors in series)</h4>
+            <table class="transistor-table">
+                <tr><th>Transistor A</th><th>Transistor B</th><th>Output Y</th></tr>
+                <tr><td>OFF</td><td>OFF</td><td>0</td></tr>
+                <tr><td>OFF</td><td>ON</td><td>0</td></tr>
+                <tr><td>ON</td><td>OFF</td><td>0</td></tr>
+                <tr><td>ON</td><td>ON</td><td>1 (Path complete!)</td></tr>
+            </table>
+
+            <div class="real-life">
+                <h4>🌍 Real Life Example</h4>
+                <p><span class="real-life-icon">🔐</span><strong>Bank Vault:</strong> A vault needs <strong>both a key AND a fingerprint</strong> to open. If you have only the key (1,0) or only the fingerprint (0,1), the vault stays locked. Both must be present (1,1) to unlock!</p>
+            </div>
+        </div>
+
+        <!-- OR Gate -->
+        <div class="gate-section">
+            <div class="gate-header">
+                <div class="gate-icon" style="background:linear-gradient(135deg, #3498db, #2980b9)">🔀</div>
+                <div class="gate-title">OR Gate</div>
+            </div>
+            <p><strong>Function:</strong> Output is <strong>1 when AT LEAST ONE input is 1</strong>. Like saying "Either one or both can be true!"</p>
+
+            <div class="gate-symbol">
+                <svg width="200" height="120" viewBox="0 0 200 120">
+                    <path d="M40,20 Q20,60 40,100 L80,100 Q120,60 80,20 Z" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="80" x2="45" y2="80" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="120" y1="60" x2="180" y2="60" stroke="#2c3e50" stroke-width="3"/>
+                    <text x="15" y="35" font-family="Kalam" font-size="16">A</text>
+                    <text x="15" y="75" font-family="Kalam" font-size="16">B</text>
+                    <text x="140" y="50" font-family="Kalam" font-size="16">Y = A+B</text>
+                </svg>
+            </div>
+
+            <h4>Truth Table</h4>
+            <table>
+                <tr><th>A</th><th>B</th><th>Y = A OR B</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+                <tr><td>1</td><td>0</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+                <tr><td>1</td><td>1</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+            </table>
+
+            <h4>Transistor Implementation (2 transistors in parallel)</h4>
+            <table class="transistor-table">
+                <tr><th>Transistor A</th><th>Transistor B</th><th>Output Y</th></tr>
+                <tr><td>OFF</td><td>OFF</td><td>0</td></tr>
+                <tr><td>OFF</td><td>ON</td><td>1 (Path through B)</td></tr>
+                <tr><td>ON</td><td>OFF</td><td>1 (Path through A)</td></tr>
+                <tr><td>ON</td><td>ON</td><td>1 (Both paths open!)</td></tr>
+            </table>
+
+            <div class="real-life">
+                <h4>🌍 Real Life Example</h4>
+                <p><span class="real-life-icon">🚨</span><strong>Fire Alarm System:</strong> A fire alarm triggers if <strong>smoke is detected OR heat is detected</strong>. Even if only one sensor activates, the alarm rings. You don't need both — either one is enough to save lives!</p>
+            </div>
+        </div>
+
+        <!-- NAND Gate -->
+        <div class="gate-section">
+            <div class="gate-header">
+                <div class="gate-icon" style="background:linear-gradient(135deg, #9b59b6, #8e44ad)">🔀</div>
+                <div class="gate-title">NAND Gate (NOT + AND)</div>
+            </div>
+            <p><strong>Function:</strong> Output is <strong>opposite of AND</strong>. It's 0 ONLY when both inputs are 1. Otherwise, it's 1.</p>
+            <p style="color:#e74c3c; font-weight:bold;">⭐ NAND is called a "Universal Gate" — you can build ANY other gate using only NAND gates!</p>
+
+            <div class="gate-symbol">
+                <svg width="220" height="120" viewBox="0 0 220 120">
+                    <path d="M40,20 L40,100 L80,100 A40,40 0 0,0 80,20 Z" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <circle cx="130" cy="60" r="8" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="40" x2="40" y2="40" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="80" x2="40" y2="80" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="138" y1="60" x2="190" y2="60" stroke="#2c3e50" stroke-width="3"/>
+                    <text x="15" y="35" font-family="Kalam" font-size="16">A</text>
+                    <text x="15" y="75" font-family="Kalam" font-size="16">B</text>
+                    <text x="150" y="50" font-family="Kalam" font-size="16">Y = (A·B)̄</text>
+                </svg>
+            </div>
+
+            <h4>Truth Table</h4>
+            <table>
+                <tr><th>A</th><th>B</th><th>AND</th><th>Y = NAND</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+            </table>
+
+            <div class="real-life">
+                <h4>🌍 Real Life Example</h4>
+                <p><span class="real-life-icon">🚗</span><strong>Car Safety:</strong> Your car's airbag should NOT deploy if <strong>both the seatbelt is fastened AND the crash sensor is triggered</strong> in a minor bump. NAND logic helps prevent false deployments — it stays off (0) only when both conditions are truly met (1,1).</p>
+            </div>
+        </div>
+
+        <!-- NOR Gate -->
+        <div class="gate-section">
+            <div class="gate-header">
+                <div class="gate-icon" style="background:linear-gradient(135deg, #1abc9c, #16a085)">🔀</div>
+                <div class="gate-title">NOR Gate (NOT + OR)</div>
+            </div>
+            <p><strong>Function:</strong> Output is <strong>opposite of OR</strong>. It's 1 ONLY when both inputs are 0. Otherwise, it's 0.</p>
+            <p style="color:#e74c3c; font-weight:bold;">⭐ NOR is also a "Universal Gate" — just like NAND!</p>
+
+            <div class="gate-symbol">
+                <svg width="220" height="120" viewBox="0 0 220 120">
+                    <path d="M40,20 Q20,60 40,100 L80,100 Q120,60 80,20 Z" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <circle cx="130" cy="60" r="8" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="80" x2="45" y2="80" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="138" y1="60" x2="190" y2="60" stroke="#2c3e50" stroke-width="3"/>
+                    <text x="15" y="35" font-family="Kalam" font-size="16">A</text>
+                    <text x="15" y="75" font-family="Kalam" font-size="16">B</text>
+                    <text x="150" y="50" font-family="Kalam" font-size="16">Y = (A+B)̄</text>
+                </svg>
+            </div>
+
+            <h4>Truth Table</h4>
+            <table>
+                <tr><th>A</th><th>B</th><th>OR</th><th>Y = NOR</th></tr>
+                <tr><td>0</td><td>0</td><td>0</td><td style="color:#27ae60; font-weight:bold;">1 ✓</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+            </table>
+
+            <div class="real-life">
+                <h4>🌍 Real Life Example</h4>
+                <p><span class="real-life-icon">🏠</span><strong>Home Security:</strong> A silent alarm triggers ONLY when <strong>NO motion is detected AND the door is closed</strong> (both 0). If either a burglar moves (1) or the door opens (1), the alarm stops being silent — the NOR output becomes 0, triggering the loud alarm!</p>
+            </div>
+        </div>
+
+        <!-- EX-OR Gate -->
+        <div class="gate-section">
+            <div class="gate-header">
+                <div class="gate-icon" style="background:linear-gradient(135deg, #f39c12, #e67e22)">🔀</div>
+                <div class="gate-title">EX-OR Gate (Exclusive OR)</div>
+            </div>
+            <p><strong>Function:</strong> Output is <strong>1 when inputs are DIFFERENT</strong>. It's like asking "Are they NOT the same?"</p>
+            <p style="background:#fff3cd; padding:10px; border-radius:8px; margin:10px 0;"><strong>Mnemonic:</strong> "EX-OR = EXclusive = Only ONE can win!"</p>
+
+            <div class="gate-symbol">
+                <svg width="220" height="120" viewBox="0 0 220 120">
+                    <path d="M40,20 Q20,60 40,100 L80,100 Q120,60 80,20 Z" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <path d="M30,20 Q10,60 30,100" fill="none" stroke="#2c3e50" stroke-width="2"/>
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="80" x2="45" y2="80" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="120" y1="60" x2="180" y2="60" stroke="#2c3e50" stroke-width="3"/>
+                    <text x="15" y="35" font-family="Kalam" font-size="16">A</text>
+                    <text x="15" y="75" font-family="Kalam" font-size="16">B</text>
+                    <text x="140" y="50" font-family="Kalam" font-size="16">Y = A⊕B</text>
+                </svg>
+            </div>
+
+            <h4>Truth Table</h4>
+            <table>
+                <tr><th>A</th><th>B</th><th>Y = A XOR B</th></tr>
+                <tr><td>0</td><td>0</td><td>0 (Same)</td></tr>
+                <tr><td>0</td><td>1</td><td style="color:#27ae60; font-weight:bold;">1 ✓ (Different!)</td></tr>
+                <tr><td>1</td><td>0</td><td style="color:#27ae60; font-weight:bold;">1 ✓ (Different!)</td></tr>
+                <tr><td>1</td><td>1</td><td>0 (Same)</td></tr>
+            </table>
+
+            <div class="real-life">
+                <h4>🌍 Real Life Example</h4>
+                <p><span class="real-life-icon">💡</span><strong>Two-Way Light Switch:</strong> In your staircase, two switches control one light. Flipping <strong>either</strong> switch changes the light's state. If both switches are in the same position, the light is off. If they're different, the light is on. That's EX-OR!</p>
+            </div>
+        </div>
+
+        <!-- EX-NOR Gate -->
+        <div class="gate-section">
+            <div class="gate-header">
+                <div class="gate-icon" style="background:linear-gradient(135deg, #e91e63, #c2185b)">🔀</div>
+                <div class="gate-title">EX-NOR Gate (Exclusive NOR)</div>
+            </div>
+            <p><strong>Function:</strong> Output is <strong>1 when inputs are the SAME</strong>. It's the exact opposite of EX-OR!</p>
+            <p style="background:#fff3cd; padding:10px; border-radius:8px; margin:10px 0;"><strong>Mnemonic:</strong> "EX-NOR = Equality Detector = Are they the SAME?"</p>
+
+            <div class="gate-symbol">
+                <svg width="220" height="120" viewBox="0 0 220 120">
+                    <path d="M40,20 Q20,60 40,100 L80,100 Q120,60 80,20 Z" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <path d="M30,20 Q10,60 30,100" fill="none" stroke="#2c3e50" stroke-width="2"/>
+                    <circle cx="130" cy="60" r="8" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="40" x2="45" y2="40" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="10" y1="80" x2="45" y2="80" stroke="#2c3e50" stroke-width="3"/>
+                    <line x1="138" y1="60" x2="190" y2="60" stroke="#2c3e50" stroke-width="3"/>
+                    <text x="15" y="35" font-family="Kalam" font-size="16">A</text>
+                    <text x="15" y="75" font-family="Kalam" font-size="16">B</text>
+                    <text x="150" y="50" font-family="Kalam" font-size="16">Y = A⊙B</text>
+                </svg>
+            </div>
+
+            <h4>Truth Table</h4>
+            <table>
+                <tr><th>A</th><th>B</th><th>Y = A XNOR B</th></tr>
+                <tr><td>0</td><td>0</td><td style="color:#27ae60; font-weight:bold;">1 ✓ (Same!)</td></tr>
+                <tr><td>0</td><td>1</td><td>0 (Different)</td></tr>
+                <tr><td>1</td><td>0</td><td>0 (Different)</td></tr>
+                <tr><td>1</td><td>1</td><td style="color:#27ae60; font-weight:bold;">1 ✓ (Same!)</td></tr>
+            </table>
+
+            <div class="real-life">
+                <h4>🌍 Real Life Example</h4>
+                <p><span class="real-life-icon">🔍</span><strong>Password Checker:</strong> When you type your password, the computer compares each character. If <strong>your input matches the stored password</strong> (both same = 1,1 or both different positions = 0,0), EX-NOR outputs 1 (Access Granted!). If even one character differs, output is 0 (Access Denied!).</p>
+            </div>
+        </div>
+
+        <!-- Quick Reference -->
+        <h2>📌 4. Quick Reference - All Gates at a Glance</h2>
+        <table>
+            <tr>
+                <th>Gate</th>
+                <th>Symbol</th>
+                <th>Expression</th>
+                <th>Output = 1 when...</th>
+            </tr>
+            <tr>
+                <td>NOT</td>
+                <td>Triangle + ○</td>
+                <td>Y = Ā</td>
+                <td>Input is 0</td>
+            </tr>
+            <tr>
+                <td>AND</td>
+                <td>D-shape</td>
+                <td>Y = A·B</td>
+                <td>Both inputs are 1</td>
+            </tr>
+            <tr>
+                <td>OR</td>
+                <td>Curved shape</td>
+                <td>Y = A+B</td>
+                <td>At least one input is 1</td>
+            </tr>
+            <tr>
+                <td>NAND</td>
+                <td>AND + ○</td>
+                <td>Y = (A·B)̄</td>
+                <td>NOT both 1 (Universal!)</td>
+            </tr>
+            <tr>
+                <td>NOR</td>
+                <td>OR + ○</td>
+                <td>Y = (A+B)̄</td>
+                <td>Both inputs are 0 (Universal!)</td>
+            </tr>
+            <tr>
+                <td>EX-OR</td>
+                <td>OR + extra curve</td>
+                <td>Y = A⊕B</td>
+                <td>Inputs are DIFFERENT</td>
+            </tr>
+            <tr>
+                <td>EX-NOR</td>
+                <td>EX-OR + ○</td>
+                <td>Y = A⊙B</td>
+                <td>Inputs are SAME</td>
+            </tr>
+        </table>
+
+        <!-- Practice Problems -->
+        <h2>📌 5. Practice Problems</h2>
+
+        <div class="problem-box">
+            <h4>📝 Problem 1: Decimal to Binary</h4>
+            <p>Convert <strong>45</strong> to binary.</p>
+            <button class="toggle-btn" onclick="toggleSolution('sol1')">Show Solution</button>
+            <div id="sol1" class="solution">
+                <p>45 ÷ 2 = 22 remainder <strong>1</strong></p>
+                <p>22 ÷ 2 = 11 remainder <strong>0</strong></p>
+                <p>11 ÷ 2 = 5 remainder <strong>1</strong></p>
+                <p>5 ÷ 2 = 2 remainder <strong>1</strong></p>
+                <p>2 ÷ 2 = 1 remainder <strong>0</strong></p>
+                <p>1 ÷ 2 = 0 remainder <strong>1</strong></p>
+                <p><strong>Answer: 101101</strong></p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h4>📝 Problem 2: Binary to Decimal</h4>
+            <p>Convert <strong>110101</strong> to decimal.</p>
+            <button class="toggle-btn" onclick="toggleSolution('sol2')">Show Solution</button>
+            <div id="sol2" class="solution">
+                <p>1×2⁵ + 1×2⁴ + 0×2³ + 1×2² + 0×2¹ + 1×2⁰</p>
+                <p>= 32 + 16 + 0 + 4 + 0 + 1</p>
+                <p><strong>Answer: 53</strong></p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h4>📝 Problem 3: Logic Gate Challenge</h4>
+            <p>If A = 1, B = 0, C = 1, find the output of: <strong>(A AND B) OR (B NAND C)</strong></p>
+            <button class="toggle-btn" onclick="toggleSolution('sol3')">Show Solution</button>
+            <div id="sol3" class="solution">
+                <p>Step 1: A AND B = 1 AND 0 = <strong>0</strong></p>
+                <p>Step 2: B NAND C = 0 NAND 1 = NOT(0 AND 1) = NOT(0) = <strong>1</strong></p>
+                <p>Step 3: 0 OR 1 = <strong>1</strong></p>
+                <p><strong>Final Answer: 1</strong></p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h4>📝 Problem 4: EX-OR Application</h4>
+            <p>A light is controlled by two switches. Currently both are OFF (0,0) and the light is OFF. You flip switch A to ON. What happens? What if you then flip switch B to ON too?</p>
+            <button class="toggle-btn" onclick="toggleSolution('sol4')">Show Solution</button>
+            <div id="sol4" class="solution">
+                <p>This is an <strong>EX-OR</strong> situation!</p>
+                <p>Initial: 0 XOR 0 = <strong>0</strong> (Light OFF)</p>
+                <p>After flipping A: 1 XOR 0 = <strong>1</strong> (Light ON! ✨)</p>
+                <p>After flipping B too: 1 XOR 1 = <strong>0</strong> (Light OFF again)</p>
+            </div>
+        </div>
+
+        <div class="problem-box">
+            <h4>📝 Problem 5: Universal Gate</h4>
+            <p>Can you make a NOT gate using only NAND gates? How many NAND gates do you need?</p>
+            <button class="toggle-btn" onclick="toggleSolution('sol5')">Show Solution</button>
+            <div id="sol5" class="solution">
+                <p>Yes! You need <strong>only 1 NAND gate</strong>!</p>
+                <p>Connect both inputs of a NAND gate together:</p>
+                <p>NAND(A, A) = NOT(A AND A) = NOT(A)</p>
+                <p>Because A AND A = A, so NOT(A AND A) = NOT(A)</p>
+                <p>🎯 This proves NAND is universal!</p>
+            </div>
+        </div>
+
+        <!-- Bitwise Operators in Programming -->
+        <h2>📌 6. Bitwise Operators in Programming</h2>
+
+        <div class="highlight-box">
+            Bitwise operators work directly on the binary representation of numbers. They are super fast because computers work in binary natively!
+        </div>
+
+        <table>
+            <tr>
+                <th>Operator</th>
+                <th>Symbol</th>
+                <th>Description</th>
+                <th>Example (5 & 3)</th>
+            </tr>
+            <tr>
+                <td>AND</td>
+                <td><code>&</code></td>
+                <td>Bitwise AND</td>
+                <td>101 & 011 = 001 (1)</td>
+            </tr>
+            <tr>
+                <td>OR</td>
+                <td><code>|</code></td>
+                <td>Bitwise OR</td>
+                <td>101 | 011 = 111 (7)</td>
+            </tr>
+            <tr>
+                <td>XOR</td>
+                <td><code>^</code></td>
+                <td>Bitwise XOR</td>
+                <td>101 ^ 011 = 110 (6)</td>
+            </tr>
+            <tr>
+                <td>NOT</td>
+                <td><code>~</code></td>
+                <td>Bitwise complement</td>
+                <td>~5 = ...11111010</td>
+            </tr>
+            <tr>
+                <td>Left Shift</td>
+                <td><code>&lt;&lt;</code></td>
+                <td>Shift bits left</td>
+                <td>5 &lt;&lt; 1 = 1010 (10)</td>
+            </tr>
+            <tr>
+                <td>Right Shift</td>
+                <td><code>&gt;&gt;</code></td>
+                <td>Shift bits right</td>
+                <td>5 &gt;&gt; 1 = 10 (2)</td>
+            </tr>
+        </table>
+
+        <div class="example-box">
+            <h4>💻 Programming Example</h4>
+            <p><strong>Checking if a number is even or odd:</strong></p>
+            <p><code>if (num & 1) { /* It's ODD! */ }</code></p>
+            <p>Why? Because all odd numbers have their last bit as 1. AND with 1 keeps only the last bit!</p>
+        </div>
+
+        <div class="real-life">
+            <h4>🌍 Real Life: Bitwise in Action</h4>
+            <p><span class="real-life-icon">🎮</span><strong>Game Permissions:</strong> In online games, permissions are stored as bits:</p>
+            <p>Bit 0 = Can Chat, Bit 1 = Can Build, Bit 2 = Can Moderate</p>
+            <p>A player with permission <code>5</code> (binary <code>101</code>) can Chat and Moderate, but NOT Build!</p>
+        </div>
+
+        <div class="footer">
+            <p>🎓 Made with ❤️ for Learning | Bitwise Operators Complete Guide</p>
+            <p>Remember: Computers don't understand words — they understand 0s and 1s!</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleSolution(id) {
+            const sol = document.getElementById(id);
+            sol.classList.toggle('show');
+            const btn = sol.previousElementSibling;
+            btn.textContent = sol.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+        }
+    </script>
+</body>
+</html>
